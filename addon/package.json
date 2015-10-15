@@ -7,20 +7,44 @@
   "license": "MPL 2.0",
   "version": "0.1",
   "permissions": {
-    "cross-domain-content": ["https://utils.mh.raistlin.fr"]
+    "cross-domain-content": ["https://utils.mh.raistlin.fr"],
+    "private-browsing": true
   },
   "preferences": [{
-        "name": "serveursMH",
+        "name": "mz_serveursMH",
         "title": "Serveurs MH",
         "description": "Liste des serveurs et proxys",
         "type": "string",
         "value": "games.mountyhall.com,serv01.mountyhall.com,localhost"
     },
     {
-        "name": "serveurMZ", 
+        "name": "mz_serveurMZ", 
         "title": "Serveur MZ",    
         "description": "Serveur principal des scripts MZ",
         "type": "string",
         "value": "utils.mh.raistlin.fr"
+    },
+    {
+        "name": "mz_external_scripts_folder", 
+        "title": "Scripts externes",    
+        "description": "Répertoire des scripts externes",
+        "type": "directory",
+        "value": ""
+    },
+    {
+        "name": "mz_internal_scripts_folder", 
+        "title": "Scripts internes",    
+        "description": "Répertoire des scripts internes",
+        "type": "string",
+        "value": "mz",
+        "hidden" : true
+    },
+    {
+        "name": "mz_url_prefix", 
+        "title": "Prefixe des URL MH",    
+        "description": "répertoire commun de l'arborescence des scripts MH",
+        "type": "string",
+        "value": "mountyhall",
+        "hidden" : true
     }]
 }

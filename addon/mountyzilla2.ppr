@@ -1,0 +1,61 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultDir=G:\jetpack\bin\mountyzilla2
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+Extensions=*.*
+[Project tree]
+mountyzilla2
+	+mountyzilla2
+		+data
+			+html
+				data\html\page.html
+			+js
+				data\js\branching.js
+				data\js\mz_profil.js
+			+libs
+				data\libs\mzapi.js
+				data\libs\mz_profilapi.js
+		+lib
+			lib\main.js
+		+test
+			test\test-main.js
+		mountyzilla2.xpi
+		package.json
+[Open project files]
+0=lib\main.js
+1=data\libs\mzapi.js
+2=package.json
+3=data\js\mz_profil.js
+4=data\libs\mz_profilapi.js
+5=data\js\branching.js
+[Selected Project Files]
+Main=
+Selected=data\js\branching.js
+[lib\main.js]
+TopLine=21
+Caret=39,51
+[data\libs\mzapi.js]
+TopLine=4
+Caret=11,12
+[package.json]
+TopLine=1
+Caret=29,11
+[data\js\mz_profil.js]
+TopLine=1
+Caret=74,2
+[data\libs\mz_profilapi.js]
+TopLine=1
+Caret=1,1
+[data\js\branching.js]
+TopLine=1
+Caret=81,16
