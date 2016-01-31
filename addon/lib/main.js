@@ -5,6 +5,8 @@ var mz_data = require("sdk/self").data;
 var mz_prefs = require('sdk/simple-prefs')
 var mz_storage = require("sdk/simple-storage").storage;
 var mz_tabs = require("sdk/tabs");
+var mz_urls = require("sdk/url")
+var mz_io_files = require("sdk/io/file");
 
 
 
@@ -28,10 +30,11 @@ return scheme + '://' + url + '/*';
  * Récupération de liste depuis les options de l'addon Manager
  */
  //construction de la liste des serveurs gérés par MZ
-var mz_serverListeBrute = mz_prefs.prefs['serveursMH'].split(',');
+var mz_serverListeBrute = mz_prefs.prefs['mz_serveursMH'].split(',');
 
 // Ajout du http:// et https:// au début, et du /* à la fin  
 var mz_serverListe = mz_serverListeBrute.map(buildHttpUrl).concat(mz_serverListeBrute.map(buildHttpsUrl));
+
 
 
 //debug
@@ -43,28 +46,12 @@ console.log("Liste des serveurs gérés : " + mz_serverListe.toString());
 // ajout de l'appel aux scripts sur les pages concernées
 mz_pageMod.PageMod({
   include: mz_serverListe,
-  contentScriptFile: [mz_data.url("js/mzapi.js"),mz_data.url("js/branching.js")],
+  contentScriptFile: [mz_data.url("libs/mzapi.js"),mz_data.url("js/branching.js")],
   
   onAttach: function(worker) {        
-  // test du simple storage      
-  // si l'objet n'existe pas, on le crée
-  if(!mz_storage.compteur){
-    console.log("compteur inconnu");
-    mz_storage.compteur=new Array();
-  }
-  // pour chaque page, on ajoute un élément de type objet
-  var pageEnCours = {url:mz_tabs.activeTab.url,nb:1}
-  mz_storage.compteur.push(pageEnCours);
-  
-  console.log("compteur = " + JSON.stringify(mz_storage.compteur));
-  
-// on appelle MZ en http si la page courante est en http, et en https si la page courante est en https
-    console.log("compteur : " + mz_storage.compteur.toString());
-    var currentProtocol=mz_tabs.activeTab.url.split(':')[0];
-    console.log("Protocole de la page en cours : " + currentProtocol);
-    worker.port.emit("loadExternalJS",currentProtocol+"://"+mz_prefs.prefs['serveurMZ']);
-    worker.port.on("externalJSLoaded", function(data){
-      console.log(data);
+  worker.port.emit("mz_Branching", mz_prefs);
+  worker.port.on("mz_Branching", function(mz_data){
+      console.log(mz_data);
       console.log("Fin de traitement");
     });
   }
